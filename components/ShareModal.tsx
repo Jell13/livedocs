@@ -25,7 +25,7 @@ const ShareModal = ({roomId, collaborators, creatorId, currentUserType} : ShareD
     const[email, setEmail] = useState('')
     const[userType, setUserType] = useState<UserType>('viewer')
     
-    const ShareDocumentDialogProps = async () => {
+    const shareDocumentHandler = async () => {
 
     }
     return (
@@ -66,6 +66,10 @@ const ShareModal = ({roomId, collaborators, creatorId, currentUserType} : ShareD
                         userType={userType}
                         setUserType={setUserType}/>
                     </div>
+                    <Button type='submit' onClick={shareDocumentHandler}
+                    className='gradient-blue flex h-full gap-1 px-5' disabled={loading}>
+                        {loading ? 'Sending' : 'Invite'}
+                    </Button>
                 </div>
             </DialogContent>
         </Dialog>
