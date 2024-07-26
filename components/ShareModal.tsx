@@ -13,6 +13,7 @@ import Image from 'next/image'
 import { Label } from './ui/label'
 import { Input } from './ui/input'
 import UserTypeSelector from './UserTypeSelector'
+import Collaborator from './Collaborator'
   
 
 const ShareModal = ({roomId, collaborators, creatorId, currentUserType} : ShareDocumentDialogProps) => {
@@ -70,6 +71,20 @@ const ShareModal = ({roomId, collaborators, creatorId, currentUserType} : ShareD
                     className='gradient-blue flex h-full gap-1 px-5' disabled={loading}>
                         {loading ? 'Sending' : 'Invite'}
                     </Button>
+                </div>
+
+                <div className='my-2 space-y-2'>
+                    <ul className='flex flex-col'>
+                        {collaborators.map((collaborator) => (
+                            <Collaborator
+                            key={collaborator.id}
+                            roomId={roomId}
+                            creatorId={creatorId}
+                            email={collaborator.email}
+                            collaborator={collaborator}
+                            user={user.info}/>
+                        ))}
+                    </ul>
                 </div>
             </DialogContent>
         </Dialog>
