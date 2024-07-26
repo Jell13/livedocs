@@ -11,6 +11,8 @@ import {
 import { Button } from './ui/button'
 import Image from 'next/image'
 import { Label } from './ui/label'
+import { Input } from './ui/input'
+import UserTypeSelector from './UserTypeSelector'
   
 
 const ShareModal = ({roomId, collaborators, creatorId, currentUserType} : ShareDocumentDialogProps) => {
@@ -21,7 +23,7 @@ const ShareModal = ({roomId, collaborators, creatorId, currentUserType} : ShareD
     const[loading, setLoading] = useState(false)
   
     const[email, setEmail] = useState('')
-    const[userType, setCurrentUserType] = useState<UserType>('viewer')
+    const[userType, setUserType] = useState<UserType>('viewer')
     
     const ShareDocumentDialogProps = async () => {
 
@@ -54,7 +56,15 @@ const ShareModal = ({roomId, collaborators, creatorId, currentUserType} : ShareD
                 </Label>
                 <div className='flex items-center gap-3'>
                     <div className='flex flex-1 rounded-md bg-dark-400'>
-
+                        <Input
+                        id="email"
+                        placeholder='Enter email address'
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className='share-input'/>
+                        <UserTypeSelector
+                        userType={userType}
+                        setUserType={setUserType}/>
                     </div>
                 </div>
             </DialogContent>
