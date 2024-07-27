@@ -14,9 +14,8 @@ import { ReactNode } from "react"
 const Notifications = () => {
 
     const { inboxNotifications } = useInboxNotifications()
-    // const { count } = useUnreadInboxNotificationsCount()
+    const { count } = useUnreadInboxNotificationsCount()
 
-    let count = 1
     const unreadNotifications = inboxNotifications.filter((notification) => !notification.readAt)
   return (
     <Popover>
