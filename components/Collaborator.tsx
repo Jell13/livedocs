@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import UserTypeSelector from './UserTypeSelector'
 import { Button } from './ui/button'
-import { updateDocumentAccess } from '@/lib/actions/room.actions'
+import { removeCollaborator, updateDocumentAccess } from '@/lib/actions/room.actions'
 
 const Collaborator = ({roomId, creatorId, collaborator, email, user} : CollaboratorProps) => {
   
@@ -20,6 +20,8 @@ const Collaborator = ({roomId, creatorId, collaborator, email, user} : Collabora
 
     const removeCollaboratorHandler = async (email: string) => {
       setLoading(true)
+
+      await removeCollaborator({roomId, email})
 
       setLoading(false)
     }
